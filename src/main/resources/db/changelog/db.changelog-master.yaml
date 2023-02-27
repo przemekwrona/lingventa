@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-logs
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: logs
+            columns:
+              - column:
+                  - name: type
+                    type: varchar(15)
+              - column:
+                  name: date
+                  type: timestamp
+              - column:
+                  name: query
+                  type: varchar(255)

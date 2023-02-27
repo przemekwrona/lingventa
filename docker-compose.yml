@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  open_meteo_db:
+    image: 'postgres'
+    container_name: open_meteo_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=welcome1
+      - POSTGRES_DB=open_meteo_db
