@@ -10,10 +10,12 @@ paths:
       parameters:
         - in: query
           name: latitude
+          required: true
           schema:
             type: string
         - in: query
           name: longitude
+          required: true
           schema:
             type: string
       responses:
