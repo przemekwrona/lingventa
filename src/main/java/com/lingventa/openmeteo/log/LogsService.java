@@ -12,11 +12,11 @@ public class LogsService {
     private final LogsRepository logsRepository;
     private final Clock clock;
 
-    public void logInfoCallServiceToGetStatistic() {
+    public void logInfoCallServiceToGetStatistic(String latitude, String longitude) {
         Logs logs = Logs.builder()
                 .type(LogType.METEO_STATISTIC)
                 .date(Instant.now(clock))
-                .query("{}")
+                .query(String.format("{latitude: %s, longitude: %s}", latitude, longitude))
                 .build();
 
         logsRepository.save(logs);

@@ -2,9 +2,9 @@ package com.lingventa.openmeteo.aop;
 
 import com.lingventa.openmeteo.log.LogsService;
 import lombok.AllArgsConstructor;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -14,12 +14,10 @@ public class LoggingAspect {
 
     private final LogsService logsService;
 
-    @Pointcut("@annotation(Log)")
-    public void logPointcut() {
-    }
-
-    @Before("logPointcut()")
-    public void logAllMethodCallsAdvice() {
-        logsService.logInfoCallServiceToGetStatistic();
+    @Before(value = "@annotation(Log)")
+    public void audit(JoinPoint joinPoint, Log Log) {
+        String latitude = (String) joinPoint.getArgs()[0];
+        String longitude = (String) joinPoint.getArgs()[1];
+        logsService.logInfoCallServiceToGetStatistic(latitude, longitude);
     }
 }
