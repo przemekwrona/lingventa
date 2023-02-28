@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Lingventa API
+  version: 0.0.1
+paths:
+  /statistics:
+    get:
+      operationId: getHistoricalMeteo
+      summary: Return sunrise, sun set and avg
+      parameters:
+        - in: query
+          name: longitude
+          schema:
+            type: string
+        - in: query
+          name: latitude
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Meteo Statistic'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeteoStatistic'
+
+components:
+  schemas:
+    MeteoStatistic:
+      type: object
+      properties:
+        dates:
+          type: array
+          items:
+            type: string
+        sunrise:
+          type: array
+          items:
+            type: string
+        sunset:
+          type: array
+          items:
+            type: string
+        precipitation_probability_mean:
+          type: array
+          items:
+            type: string
