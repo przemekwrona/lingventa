@@ -9,11 +9,11 @@ paths:
       summary: Return sunrise, sun set and avg
       parameters:
         - in: query
-          name: longitude
+          name: latitude
           schema:
             type: string
         - in: query
-          name: latitude
+          name: longitude
           schema:
             type: string
       responses:
