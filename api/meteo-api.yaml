@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: Lingventa API
+  version: 0.0.1
+paths:
+  /forecast:
+    get:
+      operationId: getMeteo
+      summary: Return sunrise, sun set and avg
+      parameters:
+        - in: query
+          name: latitude
+          schema:
+            type: string
+        - in: query
+          name: longitude
+          schema:
+            type: string
+        - in: query
+          name: timezone
+          schema:
+            type: string
+        - in: query
+          name: daily
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        200:
+          description: 'Meteo Statistic'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeteoStatistic'
+components:
+  schemas:
+    DailyUnits:
+      type: object
+      properties:
+        time:
+          type: string
+        sunrise:
+          type: string
+        sunset:
+          type: string
+        precipitation_probability_mean:
+          type: string
+    MeteoData:
+      type: object
+      properties:
+        time:
+          type: array
+          items:
+            type: string
+        sunrise:
+          type: array
+          items:
+            type: string
+        sunset:
+          type: array
+          items:
+            type: string
+        precipitation_probability_mean:
+          type: array
+          items:
+            type: string
+    MeteoStatistic:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+        generationtime_ms:
+          type: string
+        utc_offset_seconds:
+          type: string
+        timezone:
+          type: string
+        timezone_abbreviation:
+          type: string
+        elevation:
+          type: string
+        daily_units:
+          $ref: '#/components/schemas/DailyUnits'
+        daily:
+          $ref: '#/components/schemas/MeteoData'

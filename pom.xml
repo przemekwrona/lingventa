@@ -119,6 +119,23 @@
                             <generatorName>spring</generatorName>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
+                                <apiPackage>com.lingventa.api</apiPackage>
+                                <modelPackage>com.lingventa.api.model</modelPackage>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>meteo-api</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/api/meteo-api.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <configOptions>
+                                <interfaceOnly>true</interfaceOnly>
+                                <apiPackage>com.openmeteo.api</apiPackage>
+                                <modelPackage>com.openmeteo.api.model</modelPackage>
                             </configOptions>
                         </configuration>
                     </execution>
