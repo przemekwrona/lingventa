@@ -13,11 +13,13 @@ paths:
           required: true
           schema:
             type: string
+            pattern: '[0-9]*\.[0-9]*'
         - in: query
           name: longitude
           required: true
           schema:
             type: string
+            pattern: '[0-9]*\.[0-9]*'
       responses:
         200:
           description: 'Meteo Statistic'
@@ -25,6 +27,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MeteoStatistic'
+        400:
+          description: Bad request. Latitude and longitude are required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
 
 components:
   schemas:
@@ -48,3 +56,10 @@ components:
           items:
             type: number
             format: float
+    ApiError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
