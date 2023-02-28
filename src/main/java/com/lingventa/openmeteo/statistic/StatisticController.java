@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class StatisticController implements StatisticsApi {
 
+    private final StatisticService statisticService;
+
     @Override
-    public ResponseEntity<MeteoStatistic> getHistoricalMeteo(String longitude, String latitude) {
-        return ResponseEntity.ok(new MeteoStatistic());
+    public ResponseEntity<MeteoStatistic> getHistoricalMeteo(String latitude, String longitude) {
+        return ResponseEntity.ok(statisticService.getHistoricalMeteo(latitude, longitude));
     }
 }

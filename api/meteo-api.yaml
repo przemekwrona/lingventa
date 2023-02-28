@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MeteoStatistic'
+                $ref: '#/components/schemas/MeteoStatisticSummary'
 components:
   schemas:
     DailyUnits:
@@ -61,11 +61,12 @@ components:
           type: array
           items:
             type: string
-        precipitation_probability_mean:
+        precipitation_sum:
           type: array
           items:
-            type: string
-    MeteoStatistic:
+            type: number
+            format: float
+    MeteoStatisticSummary:
       type: object
       properties:
         latitude:

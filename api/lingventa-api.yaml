@@ -41,7 +41,8 @@ components:
           type: array
           items:
             type: string
-        precipitation_probability_mean:
+        precipitation_sum:
           type: array
           items:
-            type: string
+            type: number
+            format: float
