@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+  lingventa_service:
+    build:
+      dockerfile: Dockerfile
+    container_name: lingventa_service
+    ports:
+      - "8080:8080"
+    environment:
+      - PROFILE=docker
+    depends_on:
+      - clinic_db
   open_meteo_db:
     image: 'postgres'
     container_name: open_meteo_db
