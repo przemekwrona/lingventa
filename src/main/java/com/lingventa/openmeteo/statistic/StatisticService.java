@@ -2,7 +2,6 @@ package com.lingventa.openmeteo.statistic;
 
 import com.lingventa.api.model.MeteoStatistic;
 import com.lingventa.openmeteo.client.MeteoService;
-import com.lingventa.openmeteo.log.LogsService;
 import com.openmeteo.api.model.MeteoStatisticSummary;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +14,7 @@ import java.util.Optional;
 public class StatisticService {
 
     private final MeteoService meteoService;
-    private final LogsService logsService;
-
     public MeteoStatistic getHistoricalMeteo(String latitude, String longitude) {
-        logsService.logInfoCallServiceToGetStatistic();
         var response = meteoService.getMeteStatistic(latitude, longitude);
         return buildMeteoStatisticResponse(response);
     }
