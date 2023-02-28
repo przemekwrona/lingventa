@@ -53,6 +53,7 @@ components:
           type: array
           items:
             type: string
+            format: date
         sunrise:
           type: array
           items:
