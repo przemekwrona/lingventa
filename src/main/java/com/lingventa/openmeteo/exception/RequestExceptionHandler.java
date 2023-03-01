@@ -21,18 +21,20 @@ public class RequestExceptionHandler {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public final ResponseEntity<ApiError> handleException(MissingServletRequestParameterException ex) {
-        return ResponseEntity.ok(new ApiError()
-                .errors(List.of(ex.getMessage())));
+        return ResponseEntity.badRequest()
+                .body(new ApiError()
+                        .errors(List.of(ex.getMessage())));
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     public final ResponseEntity<ApiError> handleException(ConstraintViolationException ex) {
 
 
-        return ResponseEntity.ok(new ApiError()
-                .errors(ex.getConstraintViolations().stream()
-                        .map(error -> String.format("Parametr %s (%s) %s", getParameterName(error), error.getInvalidValue(), error.getMessage()))
-                        .collect(Collectors.toList())));
+        return ResponseEntity.badRequest()
+                .body(new ApiError()
+                        .errors(ex.getConstraintViolations().stream()
+                                .map(error -> String.format("Parametr %s (%s) %s", getParameterName(error), error.getInvalidValue(), error.getMessage()))
+                                .collect(Collectors.toList())));
     }
 
     private String getParameterName(ConstraintViolation<?> error) {
